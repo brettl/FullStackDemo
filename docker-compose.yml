@@ -1,0 +1,46 @@
+# One command starts everything:  docker compose up --build
+#   UI   http://localhost:5300   (React, served by nginx)
+#   API  http://localhost:5301   (ASP.NET Core; the UI also reaches it at /api through nginx)
+#   DB   localhost:3307          (MySQL, user "salon" / password "salon_demo_pw", database "salon")
+# Every password below is a throw-away DEMO value. Never reuse them for anything real.
+
+services:
+  db:
+    image: mysql:8.4
+    environment:
+      MYSQL_ROOT_PASSWORD: root_demo_pw
+      MYSQL_DATABASE: salon
+      MYSQL_USER: salon
+      MYSQL_PASSWORD: salon_demo_pw
+    ports:
+      - "3307:3306"
+    volumes:
+      - salon-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot_demo_pw"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  api:
+    build: ./api/SalonApi
+    environment:
+      ConnectionStrings__Salon: "Server=db;Port=3306;Database=salon;User=salon;Password=salon_demo_pw;"
+      Jwt__Key: "demo-only-signing-key-change-me-0123456789"
+      Admin__Username: "admin"
+      Admin__Password: "Salon123!"
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "5301:8080"
+
+  ui:
+    build: ./ui
+    depends_on:
+      - api
+    ports:
+      - "5300:80"
+
+volumes:
+  salon-data:

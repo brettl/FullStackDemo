@@ -1,0 +1,22 @@
+:root { --accent: #b0457a; --ink: #2a2230; --paper: #fbf7fa; --line: #e3d6df; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, sans-serif; color: var(--ink); background: var(--paper); line-height: 1.5; }
+.site-header { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; padding: 1rem 2rem; background: #fff; border-bottom: 2px solid var(--accent); }
+.brand { font-size: 1.4rem; font-weight: 700; color: var(--accent); text-decoration: none; }
+nav { display: flex; gap: 1.2rem; align-items: center; }
+nav a { color: var(--ink); text-decoration: none; padding-bottom: 2px; }
+nav a.active { border-bottom: 2px solid var(--accent); }
+main { max-width: 860px; margin: 2rem auto; padding: 0 1.5rem; min-height: 55vh; }
+.site-footer { text-align: center; padding: 1.5rem; color: #7a6c78; font-size: .9rem; }
+table { width: 100%; border-collapse: collapse; background: #fff; }
+th, td { text-align: left; padding: .6rem .8rem; border-bottom: 1px solid var(--line); }
+.card { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 1.5rem; display: grid; gap: .8rem; max-width: 520px; }
+.card label { display: grid; gap: .25rem; font-size: .9rem; }
+input, select, textarea { font: inherit; padding: .5rem; border: 1px solid #c9b7c3; border-radius: 6px; }
+button { font: inherit; padding: .55rem 1rem; border: 0; border-radius: 6px; background: var(--accent); color: #fff; cursor: pointer; }
+button.danger { background: #8a2a2a; padding: .3rem .7rem; }
+.link-button { background: none; color: var(--accent); padding: 0; text-decoration: underline; }
+.tabs { display: flex; gap: .5rem; margin-bottom: 1rem; }
+.tabs button { background: #fff; color: var(--ink); border: 1px solid var(--line); }
+.tabs button[aria-selected='true'] { background: var(--accent); color: #fff; }
+.error { color: #a02020; margin: 0; }

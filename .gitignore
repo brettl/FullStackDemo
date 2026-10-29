@@ -1,0 +1,11 @@
+node_modules/
+dist/
+bin/
+obj/
+*.user
+.vs/
+ui/test-results/
+ui/playwright-report/
+.env
+.claude/
+*.tsbuildinfo
